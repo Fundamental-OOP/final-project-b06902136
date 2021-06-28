@@ -2,9 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Breakable_Bricks extends Brick{
-    public ImageIcon brokenBrickImage;
     public Breakable_Bricks(){
-        brokenBrickImage = new ImageIcon("break_brick_cracked.jpg");
         brickImage = new ImageIcon("break_brick.jpg");
         int x[] = {50,350,450,550,50,300,350,450,550,150,150,450,550,
                    250,50,100,150,550,250,350,450,550,50,250,350,550,
@@ -30,7 +28,7 @@ public class Breakable_Bricks extends Brick{
                 if(new Rectangle(x, y, width, height).intersects(new Rectangle(brickXpos[i], brickYpos[i], brickWidth, brickHeight))) {
                     count[i] -= n;
                     if(count[i] <= 0) brickOn[i] = false;
-                    if(count[i] == 1)
+                    if(count[i] == 1) brickImage = new ImageIcon("break_brick_cracked.jpg");
 
                     collided = true;
                     break;

@@ -46,10 +46,10 @@ public class Gameplay extends JPanel implements ActionListener {
                 setBrick();
                 player1 = new Player(200, 500, false, false, false, true, "player1_tank_right",
                         "player1_tank_left", "player1_tank_up", "player1_tank_down",
-                        KeyEvent.VK_W, KeyEvent.VK_S, KeyEvent.VK_A, KeyEvent.VK_D);
+                        KeyEvent.VK_W, KeyEvent.VK_S, KeyEvent.VK_A, KeyEvent.VK_D, KeyEvent.VK_R, KeyEvent.VK_T, KeyEvent.VK_Y);
                 player2 = new Player(400, 500, false, false, false, true, "player2_tank_right",
                         "player2_tank_left", "player2_tank_up", "player2_tank_down",
-                        KeyEvent.VK_UP, KeyEvent.VK_DOWN, KeyEvent.VK_LEFT, KeyEvent.VK_RIGHT);
+                        KeyEvent.VK_UP, KeyEvent.VK_DOWN, KeyEvent.VK_LEFT, KeyEvent.VK_RIGHT, KeyEvent.VK_J, KeyEvent.VK_K, KeyEvent.VK_L);
             }
 
         }

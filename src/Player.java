@@ -22,7 +22,11 @@ public class Player {
     private String up_img;
     private String down_img;
     public ArrayList<Brick> BrickList;
-    public Player(int x, int y, boolean r, boolean l, boolean d, boolean u, String RightIMG, String LeftIMG, String UpIMG, String DownIMG){
+    private int command1; //up
+    private int command2; //down
+    private int command3; //left
+    private int command4; //right
+    public Player(int x, int y, boolean r, boolean l, boolean d, boolean u, String RightIMG, String LeftIMG, String UpIMG, String DownIMG, int c1, int c2, int c3, int c4){
         X = x;
         Y = y;
         right = r;
@@ -46,6 +50,10 @@ public class Player {
         WeaponList.add(bullet);
         WeaponList.add(missile);
         WeaponList.add(bomb);
+        command1 = c1;
+        command2 = c2;
+        command3 = c3;
+        command4 = c4;
     }
     public ImageIcon getPlayerIMG(){
         return playerIMG;
@@ -54,7 +62,7 @@ public class Player {
         public void keyTyped(KeyEvent e) {}
         public void keyReleased(KeyEvent e) {}
         public void keyPressed(KeyEvent e) {
-            if(e.getKeyCode()== KeyEvent.VK_W){
+            if(e.getKeyCode()== command1){
                 right = false;
                 left = false;
                 down = false;
@@ -74,7 +82,7 @@ public class Player {
                     if(!testCollision) Y -= 10;
                 }
             }
-            if(e.getKeyCode()== KeyEvent.VK_A){
+            if(e.getKeyCode()== command3){
                 right = false;
                 left = true;
                 down = false;
@@ -94,7 +102,7 @@ public class Player {
                     if(!testCollision) X -= 10;
                 }
             }
-            if(e.getKeyCode()== KeyEvent.VK_S){
+            if(e.getKeyCode()== command2){
                 right = false;
                 left = false;
                 down = true;
@@ -114,7 +122,7 @@ public class Player {
                     if(!testCollision) Y += 10;
                 }
             }
-            if(e.getKeyCode()== KeyEvent.VK_D){
+            if(e.getKeyCode() == command4){
                 right = true;
                 left = false;
                 down = false;

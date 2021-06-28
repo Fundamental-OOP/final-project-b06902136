@@ -9,7 +9,7 @@ import java.awt.Rectangle;
 import javax.swing.ImageIcon;
 
 public abstract class Weapon {
-    public abstract void perform(int n,Player player,Breakable_Bricks bricks);
+    public abstract void perform(int n, Player player,Breakable_Bricks bricks);
     public abstract void draw(Component c,Graphics g);
     public abstract int getX();
     public abstract int getY();

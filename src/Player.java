@@ -30,7 +30,8 @@ public class Player {
     private int command6; //bomb
     private int command7; //missile
 
-    public Player(int x, int y, boolean r, boolean l, boolean d, boolean u, String RightIMG, String LeftIMG, String UpIMG, String DownIMG, int c1, int c2, int c3, int c4, int c5, int c6, int c7){
+    public Player(int x, int y, boolean r, boolean l, boolean d, boolean u, String RightIMG, String LeftIMG, String UpIMG, String DownIMG,
+                  int c1, int c2, int c3, int c4, int c5, int c6, int c7, ArrayList<Weapon> wList){
         X = x;
         Y = y;
         right = r;
@@ -48,12 +49,10 @@ public class Player {
         else if(r)
             playerIMG = new ImageIcon(RightIMG);
         else playerIMG = new ImageIcon(LeftIMG);
-        Bullet bullet = new Bullet();
-        Missile missile = new Missile();
-        Bomb bomb = new Bomb(); //我不確定constructer長怎樣所以先寫這樣
-        WeaponList.add(bullet);
-        WeaponList.add(missile);
-        WeaponList.add(bomb);
+        for(int i = 0; i < wList.size(); ++i){
+            Weapon w = wList.get(i);
+            WeaponList.add(w.create());
+        }
         command1 = c1;
         command2 = c2;
         command3 = c3;

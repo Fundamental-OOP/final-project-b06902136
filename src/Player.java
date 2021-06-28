@@ -26,7 +26,11 @@ public class Player {
     private int command2; //down
     private int command3; //left
     private int command4; //right
-    public Player(int x, int y, boolean r, boolean l, boolean d, boolean u, String RightIMG, String LeftIMG, String UpIMG, String DownIMG, int c1, int c2, int c3, int c4){
+    private int command5; //bullet
+    private int command6; //bomb
+    private int command7; //missile
+
+    public Player(int x, int y, boolean r, boolean l, boolean d, boolean u, String RightIMG, String LeftIMG, String UpIMG, String DownIMG, int c1, int c2, int c3, int c4, int c5, int c6, int c7){
         X = x;
         Y = y;
         right = r;
@@ -54,6 +58,10 @@ public class Player {
         command2 = c2;
         command3 = c3;
         command4 = c4;
+        command5 = c5;
+        command6 = c6;
+        command7 = c7;
+        
     }
     public ImageIcon getPlayerIMG(){
         return playerIMG;

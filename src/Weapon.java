@@ -11,4 +11,5 @@ public abstract class Weapon {
     public abstract int getX();
     public abstract int getY();
     public abstract void move(String face);
+    public abstract Weapon create();
 }

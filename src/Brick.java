@@ -13,12 +13,6 @@ public class Brick {
     public ImageIcon brickImage;
     public int count[];
     public Brick(){
-        count = new int[21];
-        brickOn = new boolean[21];
-        for(int i = 0; i < count.length; ++i)
-            count[i] = 2;
-        for(int i = 0; i < brickOn.length; ++i)
-            brickOn[i] = true;
         brickWidth = 50;
         brickHeight = 50;
     }

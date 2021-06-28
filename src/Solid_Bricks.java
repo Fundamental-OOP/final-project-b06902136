@@ -1,6 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
-
+import java.util.Arrays;
 public class Solid_Bricks extends Brick{
     public Solid_Bricks(){
         super();
@@ -8,14 +8,13 @@ public class Solid_Bricks extends Brick{
         int x[] = {150,350,150,500,450,300,600,400,350,200,0,200,500};
         brickXpos = x;
         int y[] = {0,0,50,100,150,200,200,250,300,350,400,400,450};
+        brickYpos = y;
         for(int i = 0; i < brickOn.length; ++i)
             brickOn[i] = true;
         count = new int[13];
         brickOn = new boolean[13];
-        for(int i = 0; i < count.length; ++i)
-            count[i] = 2;
-        for(int i = 0; i < brickOn.length; ++i)
-            brickOn[i] = true;
+        Arrays.fill(count, 2);
+        Arrays.fill(brickOn, true);
     }
     @Override
     public boolean collisionCheck(int n, int x, int y, int width, int height) {

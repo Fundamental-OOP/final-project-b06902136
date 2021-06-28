@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.Arrays;
 
 public class Breakable_Bricks extends Brick{
     public Breakable_Bricks(){
@@ -14,12 +15,11 @@ public class Breakable_Bricks extends Brick{
                    300,300,300,300,350,350,350,350,400,400,400,400,450,
                    450,450,450,450,450,500,500,500,500,500,500,550,550,
                    550,550};
-        count = new int[21];
-        brickOn = new boolean[21];
-        for(int i = 0; i < count.length; ++i)
-            count[i] = 2;
-        for(int i = 0; i < brickOn.length; ++i)
-            brickOn[i] = true;
+        brickYpos = y;
+        count = new int[42];
+        brickOn = new boolean[42];
+        Arrays.fill(count, 2);
+        Arrays.fill(brickOn, true);
     }
     @Override
     public boolean collisionCheck(int n, int x, int y, int width, int height){

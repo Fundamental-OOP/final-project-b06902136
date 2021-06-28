@@ -3,6 +3,7 @@ import java.awt.*;
 
 public class Solid_Bricks extends Brick{
     public Solid_Bricks(){
+        super();
         brickImage = new ImageIcon("solid_brick.jpg");
         int x[] = {150,350,150,500,450,300,600,400,350,200,0,200,500};
         brickXpos = x;

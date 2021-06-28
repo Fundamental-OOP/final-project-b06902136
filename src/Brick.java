@@ -30,8 +30,8 @@ public class Brick {
     }
     public boolean collisionCheck(int n, int x, int y, int width, int height){
         boolean collided = false;
-        for(int i=0; i< brickOn.length;i++) {
-            if(brickOn[i]) {
+        for(int i=0; i< brickOn.length; ++i) {
+            if(brickOn[i]){
                 if(new Rectangle(x, y, width, height).intersects(new Rectangle(brickXpos[i], brickYpos[i], brickWidth, brickHeight))) {
                     brickOn[i] = false;
                     collided = true;

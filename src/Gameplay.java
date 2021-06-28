@@ -9,10 +9,10 @@ import javax.swing.*;
 import javax.swing.Timer;
 public class Gameplay extends JPanel implements ActionListener {
     private Brick solid_brick;
-    private Brick brakable_brick;
+    private Brick breakable_brick;
     public Gameplay(){
         solid_brick = new Solid_Bricks();
-        brakable_brick = new Breakable_Bricks();
+        breakable_brick = new Breakable_Bricks();
     }
     public void paint(){
 
@@ -20,5 +20,9 @@ public class Gameplay extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e){
         repaint();
+    }
+    public void setBrick(){
+        solid_brick = new Solid_Bricks();
+        breakable_brick = new Breakable_Bricks();
     }
 }

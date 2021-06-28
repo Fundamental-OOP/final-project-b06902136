@@ -10,5 +10,5 @@ public abstract class Weapon {
     public abstract void draw(Graphics g);
     public abstract int getX();
     public abstract int getY();
-    
+    public abstract void move(String face);
 }

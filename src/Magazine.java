@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class N2O extends Buff{
+public class  extends Buff{
     public ImageIcon N2OImage;
     public N2O() {
         super();

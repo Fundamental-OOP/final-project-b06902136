@@ -7,7 +7,7 @@ public class Buff {
     public int buffWidth;
     public int buffHeight;
     public int count[];
-    public boolean acquireCheck(int x, int y, int width, int height){
-        return true;
+    public boolean acquireCheck(Player p){
+        return false;
     }
 }

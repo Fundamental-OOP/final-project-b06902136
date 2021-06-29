@@ -23,7 +23,7 @@ public class Health extends Buff{
         }
     }
     @Override
-    public boolean acquireCheck(int x, int y, int width, int height){
+    public boolean acquireCheck(Player p){
         return true;
     }
 }

@@ -56,6 +56,98 @@ public class Gameplay extends JPanel implements ActionListener {
         // draw bricks
         breakable_brick.draw(this, graphics);
         solid_brick.draw(this, graphics);
+
+        if(play){
+            player1.draw(this, graphics);
+            player2.draw(this, graphics);
+
+            if(player1.getUsingWeapon() != null && player1.Shoot){
+                if(player1.shootDirection.equals("")){
+                    if(player1.up){
+                        player1.shootDirection = "up";
+                    }
+                    else if(player1.down){
+                        player1.shootDirection = "down";
+                    }
+                    else if(player1.right){
+                        player1.shootDirection = "right";
+                    }
+                    else if(player1.left){
+                        player1.shootDirection = "left";
+                    }
+                }
+                else{
+                    player1.getUsingWeapon().move(player1.shootDirection);
+                    player1.getUsingWeapon().draw(this, graphics);
+                    player1.getUsingWeapon().draw(this, graphics);
+                }
+
+                if(player1.getUsingWeapon().perform(player1, player2)){
+                    player1.setUsingWeapon(null);
+                    player1.Shoot = false;
+                    player1.shootDirection = "";
+                }
+            }
+            if(player2.getUsingWeapon() != null && player2.Shoot){
+                if(player2.shootDirection.equals("")){
+                    if(player2.up){
+                        player2.shootDirection = "up";
+                    }
+                    else if(player2.down){
+                        player2.shootDirection = "down";
+                    }
+                    else if(player2.right){
+                        player2.shootDirection = "right";
+                    }
+                    else if(player2.left){
+                        player2.shootDirection = "left";
+                    }
+                }
+                else{
+                    player2.getUsingWeapon().move(player2.shootDirection);
+                    player2.getUsingWeapon().draw(this, graphics);
+                    player2.getUsingWeapon().draw(this, graphics);
+                }
+
+                if(player2.getUsingWeapon().perform(player2, player1)){
+                    player2.setUsingWeapon(null);
+                    player2.Shoot = false;
+                    player2.shootDirection = "";
+                }
+            }
+            // the scores
+            graphics.setColor(Color.white);
+            graphics.setFont(new Font("serif",Font.BOLD, 15));
+            graphics.drawString("Scores", 700,30);
+            graphics.drawString("Player 1:  "+ player1.score, 670,60);
+            graphics.drawString("Player 2:  "+ player2.score, 670,90);
+
+            graphics.drawString("Lives", 700,150);
+            graphics.drawString("Player 1:  "+ player1.lives, 670,180);
+            graphics.drawString("Player 2:  "+ player2.lives, 670,210);
+
+            if(player1.lives == 0){
+                graphics.setColor(Color.white);
+                graphics.setFont(new Font("serif",Font.BOLD, 60));
+                graphics.drawString("Game Over", 200,300);
+                graphics.drawString("Player 2 Won", 180,380);
+                play = false;
+                graphics.setColor(Color.white);
+                graphics.setFont(new Font("serif",Font.BOLD, 30));
+                graphics.drawString("(Space to Restart)", 230,430);
+            }
+            else if(player2.lives == 0){
+                graphics.setColor(Color.white);
+                graphics.setFont(new Font("serif",Font.BOLD, 60));
+                graphics.drawString("Game Over", 200,300);
+                graphics.drawString("Player 1 Won", 180,380);
+                graphics.setColor(Color.white);
+                graphics.setFont(new Font("serif",Font.BOLD, 30));
+                graphics.drawString("(Space to Restart)", 230,430);
+                play = false;
+            }
+            graphics.dispose();
+        }
     }
     public void setPlay(){
         play = true;

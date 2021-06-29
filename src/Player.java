@@ -67,7 +67,15 @@ public class Player {
         return playerIMG;
     }
     public Weapon getUsingWeapon(){return usingWeapon;}
-    
+    public void draw(Component component, Graphics graphics){
+        playerIMG.paintIcon(component, graphics, X, Y);
+    }
+    public ArrayList<Weapon> getWeaponList(){
+        return WeaponList;
+    }
+    public void setUsingWeapon(Weapon w){
+        usingWeapon = w;
+    }
     private class Listener implements KeyListener{
         public void keyTyped(KeyEvent e) {}
         public void keyReleased(KeyEvent e) {}

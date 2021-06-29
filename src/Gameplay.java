@@ -178,6 +178,16 @@ public class Gameplay extends JPanel implements ActionListener {
                 setBrick();
                 removeKeyListener(player1.myListener);
                 removeKeyListener(player2.myListener);
+                wList.removeAll(wList);
+                bList.removeAll(bList);
+                bList.add(solid_brick);
+                bList.add(breakable_brick);
+                Bullet bullet = new Bullet(new Player(), bList);
+                Missile missile = new Missile(new Player(), bList);
+                Bomb bomb = new Bomb(new Player(), bList);
+                wList.add(bullet);
+                wList.add(missile);
+                wList.add(bomb);
                 player1 = new Player(200, 550, false, false, false, true, "player1_tank_right.png",
                         "player1_tank_left.png", "player1_tank_up.png", "player1_tank_down.png",
                         KeyEvent.VK_W, KeyEvent.VK_S, KeyEvent.VK_A, KeyEvent.VK_D, KeyEvent.VK_R, KeyEvent.VK_T, KeyEvent.VK_Y, wList);
@@ -188,6 +198,8 @@ public class Gameplay extends JPanel implements ActionListener {
                 player1.BrickList.add(breakable_brick);
                 player2.BrickList.add(solid_brick);
                 player2.BrickList.add(breakable_brick);
+                player1.setEnemy(player2);
+                player2.setEnemy(player1);
                 addKeyListener(player1.myListener);
                 addKeyListener(player2.myListener);
                 setPlay(true);

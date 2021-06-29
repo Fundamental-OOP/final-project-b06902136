@@ -10,7 +10,7 @@ public class Player {
     private Weapon usingWeapon;
     private ImageIcon playerIMG;
     public int EffectCount;
-    public int Speed = 10;
+    public int Speed;
     public int X;
     public int Y;
     public boolean right;
@@ -69,6 +69,7 @@ public class Player {
         command6 = c6;
         command7 = c7;
         usingWeapon = null;
+        Speed = 10;
     }
     public ImageIcon getPlayerIMG(){
         return playerIMG;
@@ -100,7 +101,7 @@ public class Player {
                 down = false;
                 up = true;
                 boolean testCollision = false;
-                if(Y >= Speed){
+                if(Y >= 10){
                     for(int i = 0; i < BrickList.size(); ++i){
                         Brick b = BrickList.get(i);
                         if(testCollision) break;
@@ -114,7 +115,9 @@ public class Player {
                     }
                     if(new Rectangle(X , Y - Speed, 50, 50).intersects(new Rectangle(enemy.X, enemy.Y, 50, 50)))
                         testCollision = true;
-                    if(!testCollision) Y -= Speed;
+                    if(!testCollision){
+                        Y -= Speed;
+                    }
                 }
             }
             if(e.getKeyCode()== command3){
@@ -124,7 +127,7 @@ public class Player {
                 down = false;
                 up = false;
                 boolean testCollision = false;
-                if(X >= Speed){
+                if(X >= 10){
                     for(int i = 0; i < BrickList.size(); ++i){
                         Brick b = BrickList.get(i);
                         if(testCollision) break;

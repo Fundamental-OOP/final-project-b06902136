@@ -33,10 +33,7 @@ public class Missile extends Weapon{
                 user.score += 10;
                 enemy.lives -= 1;
                 user.shootDirection = "hit";
-                int X;
-                if(user.left) X = enemy.X + 10;
-                else X = enemy.X - 10;
-                ExplosionEffect e = new ExplosionEffect(X,enemy.Y);
+                ExplosionEffect e = new ExplosionEffect(enemy.X+13,enemy.Y);
                 e.countDown = 10;
                 effect_list.add(e);
                 return false;
@@ -48,10 +45,7 @@ public class Missile extends Weapon{
                 user.score += 10;
                 enemy.lives -= 1;
                 user.shootDirection = "hit";
-                int Y;
-                if(user.up) Y = enemy.Y + 10;
-                else Y = enemy.Y - 10;
-                ExplosionEffect e = new ExplosionEffect(enemy.X, Y);
+                ExplosionEffect e = new ExplosionEffect(enemy.X, enemy.Y + 13);
                 e.countDown = 10;
                 effect_list.add(e);
                 return false;
@@ -87,7 +81,7 @@ public class Missile extends Weapon{
                         int X;
                         if(user.left) X = x - 50;
                         else X = x + 50;
-                        ExplosionEffect e = new ExplosionEffect(X, y-5);
+                        ExplosionEffect e = new ExplosionEffect(X, y-13);
                         effect_list.add(e);
                         return false;
                     }
@@ -175,7 +169,6 @@ public class Missile extends Weapon{
         public void effect_paint(Component c, Graphics g){
             --countDown;
             effectIMG.paintIcon(c, g, X, Y);
-            System.out.println("hello2");
         }
     }
 }

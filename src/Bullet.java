@@ -13,7 +13,7 @@ public class Bullet extends Weapon{
 	}
 	
 	@Override
-	public boolean perform(int n, Player user, Player enemy) {
+	public boolean perform(Player user, Player enemy) {
 		if(new Rectangle(getX(), getY(), 10, 10)
 				.intersects(new Rectangle(enemy.X, enemy.Y, 50, 50)))
 				{

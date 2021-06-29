@@ -13,7 +13,6 @@ public class Bomb extends Weapon{
     private int countDown;
     private int x;
     private int y;
-    //private int times;
     Breakable_Bricks bricks;
     private ImageIcon bombImage;
     private ArrayList<Brick>bricksList;
@@ -23,7 +22,7 @@ public class Bomb extends Weapon{
         this.bombImage = new ImageIcon("bomb.png");
         this.bricksList = bricksList;
         this.isUsing = true;
-        this.countDown = 15;
+        this.countDown = 15000;
     }
 
     @Override

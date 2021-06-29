@@ -23,6 +23,7 @@ public class Player {
     private String up_img;
     private String down_img;
     public ArrayList<Brick> BrickList;
+    public Listener myListener;
     private int command1; //up
     private int command2; //down
     private int command3; //left
@@ -33,6 +34,7 @@ public class Player {
 
     public Player(int x, int y, boolean r, boolean l, boolean d, boolean u, String RightIMG, String LeftIMG, String UpIMG, String DownIMG,
                   int c1, int c2, int c3, int c4, int c5, int c6, int c7, ArrayList<Weapon> wList){
+        myListener = new Listener();
         X = x;
         Y = y;
         right = r;

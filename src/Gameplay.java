@@ -17,6 +17,7 @@ public class Gameplay extends JPanel implements ActionListener {
     private boolean play;
     public Timer timer;
     private int delay = 8;
+    private resetListener ResetListener;
     public Gameplay(){
         solid_brick = new Solid_Bricks();
         breakable_brick = new Breakable_Bricks();
@@ -38,6 +39,9 @@ public class Gameplay extends JPanel implements ActionListener {
         player1.BrickList.add(breakable_brick);
         player2.BrickList.add(solid_brick);
         player2.BrickList.add(breakable_brick);
+        addKeyListener(ResetListener);
+        addKeyListener(player1.myListener);
+        addKeyListener(player2.myListener);
         play = true;
         timer = new Timer(delay, this);
         timer.start();

@@ -71,9 +71,11 @@ public class Player {
         return playerIMG;
     }
     public Weapon getUsingWeapon(){return usingWeapon;}
+
     public void draw(Component component, Graphics graphics){
         playerIMG.paintIcon(component, graphics, X, Y);
     }
+
     public ArrayList<Weapon> getWeaponList(){
         return WeaponList;
     }
@@ -92,7 +94,7 @@ public class Player {
                         Brick b = BrickList.get(i);
                         if(testCollision) break;
                         for(int j = 0; j < b.brickOn.length; ++j){
-                            if (new Rectangle(X, Y - 10, 10, 10).intersects(new Rectangle(b.brickXpos[j], b.brickYpos[j], b.brickWidth, b.brickHeight))) {
+                            if (new Rectangle(X, Y - 10, 50, 50).intersects(new Rectangle(b.brickXpos[j], b.brickYpos[j], b.brickWidth, b.brickHeight))) {
                                 testCollision = true;
                                 break;
                             }
@@ -109,7 +111,7 @@ public class Player {
                         Brick b = BrickList.get(i);
                         if(testCollision) break;
                         for(int j = 0; j < b.brickOn.length; ++j){
-                            if (new Rectangle(X - 10, Y, 10, 10).intersects(new Rectangle(b.brickXpos[j], b.brickYpos[j], b.brickWidth, b.brickHeight))) {
+                            if (new Rectangle(X - 10, Y, 50, 50).intersects(new Rectangle(b.brickXpos[j], b.brickYpos[j], b.brickWidth, b.brickHeight))) {
                                 testCollision = true;
                                 break;
                             }
@@ -126,7 +128,7 @@ public class Player {
                         Brick b = BrickList.get(i);
                         if(testCollision) break;
                         for(int j = 0; j < b.brickOn.length; ++j){
-                            if (new Rectangle(X, Y + 10, 10, 10).intersects(new Rectangle(b.brickXpos[j], b.brickYpos[j], b.brickWidth, b.brickHeight))) {
+                            if (new Rectangle(X, Y + 10, 50, 50).intersects(new Rectangle(b.brickXpos[j], b.brickYpos[j], b.brickWidth, b.brickHeight))) {
                                 testCollision = true;
                                 break;
                             }
@@ -138,12 +140,12 @@ public class Player {
             if(e.getKeyCode() == command4){
                 playerIMG = new ImageIcon(right_img);
                 boolean testCollision = false;
-                if(X <= 540){
+                if(X <= 595){
                     for(int i = 0; i < BrickList.size(); ++i){
                         Brick b = BrickList.get(i);
                         if(testCollision) break;
                         for(int j = 0; j < b.brickOn.length; ++j){
-                            if(new Rectangle(X + 10, Y, 10, 10).intersects(new Rectangle(b.brickXpos[j], b.brickYpos[j], b.brickWidth, b.brickHeight))) {
+                            if(new Rectangle(X + 10, Y, 50, 50).intersects(new Rectangle(b.brickXpos[j], b.brickYpos[j], b.brickWidth, b.brickHeight))) {
                                 testCollision = true;
                                 break;
                             }

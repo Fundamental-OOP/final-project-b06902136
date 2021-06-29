@@ -24,7 +24,7 @@ public class Bomb extends Weapon{
         super.count = 3;
         this.bombImage = new ImageIcon("bomb.png");
         this.bricksList = bricksList;
-        countDown = 2000;
+        countDown = 800;
     }
 
     @Override

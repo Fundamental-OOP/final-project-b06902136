@@ -54,7 +54,7 @@ public class Missile extends Weapon{
                         int Y;
                         if(user.up) Y = y - 50;
                         else Y = y + 50;
-                        ExplosionEffect e = new ExplosionEffect(x-20, Y);
+                        ExplosionEffect e = new ExplosionEffect(x, Y);
                         effect_list.add(e);
                         return false;
                     }
@@ -71,7 +71,7 @@ public class Missile extends Weapon{
                         int X;
                         if(user.left) X = x - 50;
                         else X = x + 50;
-                        ExplosionEffect e = new ExplosionEffect(X, y);
+                        ExplosionEffect e = new ExplosionEffect(X, y-5);
                         effect_list.add(e);
                         return false;
                     }
@@ -151,7 +151,7 @@ public class Missile extends Weapon{
         public int Y;
         public ExplosionEffect(int x, int y){
             System.out.println("hello2");
-            effectIMG = new ImageIcon("explosion_effect.png");
+            effectIMG = new ImageIcon("explosion_effect1.png");
             countDown = 28;
             X = x;
             Y = y;

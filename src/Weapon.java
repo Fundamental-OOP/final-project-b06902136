@@ -10,7 +10,7 @@ import javax.swing.ImageIcon;
 
 public class Weapon {
     public int count;
-    public boolean perform(int n,Player user,Player enemy) {return false;}
+    public boolean perform(Player user,Player enemy) {return false;}
     public void draw(Component c,Graphics g) {return;}
     public int getX() {return 0;}
     public int getY() {return 0;}

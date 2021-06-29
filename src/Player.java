@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 public class Player {
     private ArrayList<Weapon> WeaponList;
+    private Weapon usingWeapon;
     private ImageIcon playerIMG;
     public int X;
     public int Y;
@@ -65,6 +66,8 @@ public class Player {
     public ImageIcon getPlayerIMG(){
         return playerIMG;
     }
+    public Weapon getUsingWeapon(){return usingWeapon;}
+    
     private class Listener implements KeyListener{
         public void keyTyped(KeyEvent e) {}
         public void keyReleased(KeyEvent e) {}
@@ -148,6 +151,8 @@ public class Player {
                     }
                     if(!testCollision) X += 10;
                 }
+            }
+            if(e.getKeyCode() == command5){
             }
         }
     }

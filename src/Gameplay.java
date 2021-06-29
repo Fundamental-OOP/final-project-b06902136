@@ -37,10 +37,10 @@ public class Gameplay extends JPanel implements ActionListener {
         wList.add(missile);
         wList.add(bomb);
 
-        player1 = new Player(200, 500, false, false, false, true, "player1_tank_right.png",
+        player1 = new Player(200, 550, false, false, false, true, "player1_tank_right.png",
                 "player1_tank_left.png", "player1_tank_up.png", "player1_tank_down.png",
                 KeyEvent.VK_W, KeyEvent.VK_S, KeyEvent.VK_A, KeyEvent.VK_D, KeyEvent.VK_R, KeyEvent.VK_T, KeyEvent.VK_Y, wList);
-        player2 = new Player(400, 500, false, false, false, true, "player2_tank_right.png",
+        player2 = new Player(400, 550, false, false, false, true, "player2_tank_right.png",
                 "player2_tank_left.png", "player2_tank_up.png", "player2_tank_down.png",
                 KeyEvent.VK_UP, KeyEvent.VK_DOWN, KeyEvent.VK_LEFT, KeyEvent.VK_RIGHT, KeyEvent.VK_J, KeyEvent.VK_K, KeyEvent.VK_L, wList);
         player1.setEnemy(player2);
@@ -176,20 +176,21 @@ public class Gameplay extends JPanel implements ActionListener {
         public void keyPressed(KeyEvent e){
             if(e.getKeyCode() == KeyEvent.VK_SPACE && (player1.lives == 0 || player2.lives == 0)){
                 setBrick();
-                player1 = new Player(200, 500, false, false, false, true, "player1_tank_right.png",
+                player1 = new Player(200, 550, false, false, false, true, "player1_tank_right.png",
                         "player1_tank_left.png", "player1_tank_up.png", "player1_tank_down.png",
                         KeyEvent.VK_W, KeyEvent.VK_S, KeyEvent.VK_A, KeyEvent.VK_D, KeyEvent.VK_R, KeyEvent.VK_T, KeyEvent.VK_Y, wList);
-                player2 = new Player(400, 500, false, false, false, true, "player2_tank_right.png",
+                player2 = new Player(400, 550, false, false, false, true, "player2_tank_right.png",
                         "player2_tank_left.png", "player2_tank_up.png", "player2_tank_down.png",
                         KeyEvent.VK_UP, KeyEvent.VK_DOWN, KeyEvent.VK_LEFT, KeyEvent.VK_RIGHT, KeyEvent.VK_J, KeyEvent.VK_K, KeyEvent.VK_L, wList);
                 player1.BrickList.add(solid_brick);
                 player1.BrickList.add(breakable_brick);
                 player2.BrickList.add(solid_brick);
                 player2.BrickList.add(breakable_brick);
+                addKeyListener(player1.myListener);
+                addKeyListener(player2.myListener);
                 setPlay(true);
                 repaint();
             }
-
         }
     }
 }

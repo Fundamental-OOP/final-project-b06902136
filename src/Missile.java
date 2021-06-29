@@ -150,7 +150,6 @@ public class Missile extends Weapon{
         public int X;
         public int Y;
         public ExplosionEffect(int x, int y){
-            System.out.println("hello2");
             effectIMG = new ImageIcon("explosion_effect1.png");
             countDown = 28;
             X = x;

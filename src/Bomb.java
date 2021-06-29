@@ -24,7 +24,7 @@ public class Bomb extends Weapon{
     private ArrayList<Brick>bricksList;
     public Bomb(Player myUser, ArrayList<Brick> bricksList){
         super(myUser);
-        super.count = 3;
+        super.count = 10;
         this.bombImage = new ImageIcon("bomb.png");
         this.bricksList = bricksList;
         countDown = 800;

@@ -11,7 +11,7 @@ public class Missile extends Weapon{
     public ArrayList<ExplosionEffect> effect_list;
     public Missile(Player myUser, ArrayList<Brick> bList) {
         super(myUser);
-        super.count = 3;
+        super.count = 10;
         brickList = bList;
         if(user.up) missileImage = new ImageIcon("missile_up.png");
         else if(user.down) missileImage = new ImageIcon("missile_down.png");

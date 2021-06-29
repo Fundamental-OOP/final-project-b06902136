@@ -10,31 +10,40 @@ import javax.swing.Timer;
 public class Gameplay extends JPanel implements ActionListener {
     private Player player1;
     private Player player2;
+
     private Brick solid_brick;
     private Brick breakable_brick;
+
     public ArrayList<Brick> bList = new ArrayList<>();
     public ArrayList<Weapon> wList = new ArrayList<>();
+
     private boolean play;
     public Timer timer;
     private int delay = 8;
+
     private resetListener ResetListener;
+
     public Gameplay(){
         solid_brick = new Solid_Bricks();
         breakable_brick = new Breakable_Bricks();
         bList.add(solid_brick);
         bList.add(breakable_brick);
+
         Bullet bullet = new Bullet(bList);
         Missile missile = new Missile(bList);
         Bomb bomb = new Bomb(bList);
         wList.add(bullet);
         wList.add(missile);
         wList.add(bomb);
+
         player1 = new Player(200, 500, false, false, false, true, "player1_tank_right",
                 "player1_tank_left", "player1_tank_up", "player1_tank_down",
                 KeyEvent.VK_W, KeyEvent.VK_S, KeyEvent.VK_A, KeyEvent.VK_D, KeyEvent.VK_R, KeyEvent.VK_T, KeyEvent.VK_Y, wList);
         player2 = new Player(400, 500, false, false, false, true, "player2_tank_right",
                 "player2_tank_left", "player2_tank_up", "player2_tank_down",
                 KeyEvent.VK_UP, KeyEvent.VK_DOWN, KeyEvent.VK_LEFT, KeyEvent.VK_RIGHT, KeyEvent.VK_J, KeyEvent.VK_K, KeyEvent.VK_L, wList);
+
+        setFocusable(true);
         player1.BrickList.add(solid_brick);
         player1.BrickList.add(breakable_brick);
         player2.BrickList.add(solid_brick);
@@ -42,6 +51,7 @@ public class Gameplay extends JPanel implements ActionListener {
         addKeyListener(ResetListener);
         addKeyListener(player1.myListener);
         addKeyListener(player2.myListener);
+        setFocusTraversalKeysEnabled(false);
         play = true;
         timer = new Timer(delay, this);
         timer.start();

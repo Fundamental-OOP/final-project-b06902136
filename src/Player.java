@@ -45,6 +45,8 @@ public class Player {
         left_img = LeftIMG;
         up_img = UpIMG;
         down_img = DownIMG;
+        BrickList = new ArrayList<>();
+        WeaponList = new ArrayList<>();
         if(u)
             playerIMG = new ImageIcon(UpIMG);
         else if(d)

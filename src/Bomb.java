@@ -33,7 +33,11 @@ public class Bomb extends Weapon{
         if(this.countDown <= 0){
             if(collisionCheck(enemy.X, enemy.Y)){
                 user.score += 10;
-                enemy.lives -= 1;
+                --enemy.lives;
+            }
+            if(collisionCheck(user.X, user.Y)){
+                enemy.score += 10;
+                --user.lives;
             }
             this.explode();
             return true;
@@ -81,8 +85,8 @@ public class Bomb extends Weapon{
         this.countDown -= 1;
         return;
     }
-    private boolean collisionCheck(int Xpos,int Ypos){
-        if(new Rectangle(getX() - 30, getY() - 30, 90, 90)
+    private boolean collisionCheck(int Xpos, int Ypos){
+        if(new Rectangle(x - 30, y - 30, 90, 90)
                 .intersects(new Rectangle(Xpos, Ypos, 50, 50))){
             return true;
         }

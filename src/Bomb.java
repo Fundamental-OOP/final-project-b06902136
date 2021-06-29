@@ -10,19 +10,18 @@ import java.awt.Rectangle;
 import javax.swing.ImageIcon;
 
 public class Bomb extends Weapon{
+
     private int countDown;
     private int x;
     private int y;
     //private int times;
-    Breakable_Bricks bricks;
     private ImageIcon bombImage;
     private ArrayList<Brick>bricksList;
-    public boolean isUsing;
     public Bomb(Player myUser, ArrayList<Brick> bricksList){
         super(myUser);
+        super.count = 3;
         this.bombImage = new ImageIcon("bomb.png");
         this.bricksList = bricksList;
-        this.isUsing = true;
     }
 
     @Override
@@ -48,18 +47,16 @@ public class Bomb extends Weapon{
         y = Y;
     }
     @Override
-    public void draw(Component c,Graphics g){
-        if(this.isUsing){
-            bombImage.paintIcon(c, g, this.x, this.y);
-            update();
-        }
+    public void draw(Component c, Graphics g){
+        bombImage.paintIcon(c, g, this.x, this.y);
+        update();
     }
 
     @Override
     public Weapon create(Player user){
         Bomb newBomb = new Bomb(user, bricksList);
         newBomb.setX(user.X);
-        newBomb.setX(user.Y);
+        newBomb.setY(user.Y);
         return new Bomb(user, bricksList);
     }
 
@@ -99,13 +96,16 @@ public class Bomb extends Weapon{
         return false;
     }
     private void explode(){
-        for(int i = 0;i<bricks.count.length;i++){
-            if(collisionCheck(bricks.brickXpos[i],bricks.brickYpos[i])){
-                bricks.count[i] -= 1;
-                if(bricks.count[i] <= 0) bricks.brickOn[i] = false;
-                if(bricks.count[i] == 1) bricks.brickImage = new ImageIcon("break_brick_cracked.jpg");
+        for(Brick br : bricksList){
+            for(int i = 0;i<br.count.length;i++){
+                if(collisionCheck(br.brickXpos[i], br.brickYpos[i])){
+                    br.count[i] -= 1;
+                    if(br.count[i] <= 0) br.brickOn[i] = false;
+                    if(br.count[i] == 1) br.brickImage = new ImageIcon("break_brick_cracked.jpg");
+                }
             }
         }
+
     }
 }
 

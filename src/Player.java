@@ -30,8 +30,8 @@ public class Player {
     private int command3; //left
     private int command4; //right
     private int command5; //bullet
-    private int command6; //bomb
-    private int command7; //missile
+    private int command6; //missile
+    private int command7; //bomb
     public Player(){};
     public Player(int x, int y, boolean r, boolean l, boolean d, boolean u, String RightIMG, String LeftIMG, String UpIMG, String DownIMG,
                   int c1, int c2, int c3, int c4, int c5, int c6, int c7, ArrayList<Weapon> wList){

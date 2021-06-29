@@ -9,8 +9,6 @@ public class Solid_Bricks extends Brick{
         brickXpos = x;
         int y[] = {0,0,50,100,150,200,200,250,300,350,400,400,450};
         brickYpos = y;
-        for(int i = 0; i < brickOn.length; ++i)
-            brickOn[i] = true;
         count = new int[13];
         brickOn = new boolean[13];
         Arrays.fill(count, 2);

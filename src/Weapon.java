@@ -8,12 +8,13 @@ import java.awt.Rectangle;
 
 import javax.swing.ImageIcon;
 
-public abstract class Weapon {
-//    public abstract void perform(int n, Player player,Breakable_Bricks bricks);
-    public abstract boolean perform(int n,Player user,Player enemy);
-    public abstract void draw(Component c,Graphics g);
-    public abstract int getX();
-    public abstract int getY();
-    public abstract void move(String face);
-    public abstract Weapon create();
+public class Weapon {
+    public int count;
+    public boolean perform(int n,Player user,Player enemy) {return false;}
+    public void draw(Component c,Graphics g) {return;}
+    public int getX() {return 0;}
+    public int getY() {return 0;}
+    public void move(String face) {return;}
+    public Weapon create() {return null;}
+    public Weapon releaseNewOne(){return null;}
 }

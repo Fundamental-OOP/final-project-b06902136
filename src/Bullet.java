@@ -9,6 +9,7 @@ public class Bullet extends Weapon{
 	public ArrayList<Brick> BrickList;
 	public Bullet(ArrayList<Brick> bList) {
 		BrickList = bList;
+		super.count = 1;
 	}
 	
 	@Override
@@ -75,6 +76,12 @@ public class Bullet extends Weapon{
 	public Weapon create() {
 		return new Bullet(BrickList);
 	}
+	
+	@Override
+	public Weapon releaseNewOne(){
+		
+		return create();
+		}
 
 	
 }

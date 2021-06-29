@@ -10,7 +10,7 @@ import javax.swing.ImageIcon;
 
 public abstract class Weapon {
 //    public abstract void perform(int n, Player player,Breakable_Bricks bricks);
-    public abstract boolean perform(int n,Player user,Player enemy,Breakable_Bricks bricks);
+    public abstract boolean perform(int n,Player user,Player enemy);
     public abstract void draw(Component c,Graphics g);
     public abstract int getX();
     public abstract int getY();

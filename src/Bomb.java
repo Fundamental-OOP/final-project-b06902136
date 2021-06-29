@@ -34,7 +34,6 @@ public class Bomb extends Weapon{
             if(collisionCheck(enemy.X, enemy.Y)){
                 user.score += 10;
                 enemy.lives -= 1;
-                return true;
             }
             this.explode();
             return true;
@@ -57,8 +56,8 @@ public class Bomb extends Weapon{
     @Override
     public Weapon create(Player user){
         Bomb newBomb = new Bomb(user, bricksList);
-        newBomb.setX(user.X);
-        newBomb.setY(user.Y);
+        newBomb.setX(user.X + 10);
+        newBomb.setY(user.Y + 10);
         return newBomb;
     }
 
@@ -83,19 +82,18 @@ public class Bomb extends Weapon{
         return;
     }
     private boolean collisionCheck(int Xpos,int Ypos){
-        if(getX() + 50 >= Xpos && Xpos <= getX() - 50 && getY() + 50 >= Ypos && Ypos <= getY() - 50){
+        if(new Rectangle(getX() - 30, getY() - 30, 90, 90)
+                .intersects(new Rectangle(Xpos, Ypos, 50, 50))){
             return true;
         }
         return false;
     }
     private void explode(){
         for(Brick br : bricksList){
-            for(int i = 0;i<br.count.length;i++){
-                if(collisionCheck(br.brickXpos[i], br.brickYpos[i])){
-                    br.count[i] -= 1;
-                    if(br.count[i] <= 0) br.brickOn[i] = false;
-                    if(br.count[i] == 1) br.brickImage = new ImageIcon("break_brick_cracked.jpg");
-                }
+            if(br.collisionCheck(1, x - 30 , y - 30, 90, 90)) {
+                user.Shoot = false;
+                user.shootDirection = "";
+                user.setUsingWeapon(null);
             }
         }
 

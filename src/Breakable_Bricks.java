@@ -31,11 +31,9 @@ public class Breakable_Bricks extends Brick{
             if(brickOn[i]){
                 if(new Rectangle(x, y, width, height).intersects(new Rectangle(brickXpos[i], brickYpos[i], brickWidth, brickHeight))) {
                     count[i] -= damage;
-                    if(count[i] <= 0){
+                    if(count[i] <= 0)
                         brickOn[i] = false;
-                    }
                     collided = true;
-                    break;
                 }
             }
         }
@@ -44,9 +42,10 @@ public class Breakable_Bricks extends Brick{
     @Override
     public void draw(Component component, Graphics graphics){
         for(int i = 0; i < brickOn.length; ++i) {
-            if(brickOn[i])
+            if(brickOn[i]){
                 if(count[i] > 1) brickImage.paintIcon(component, graphics, brickXpos[i], brickYpos[i]);
                 else broken.paintIcon(component, graphics, brickXpos[i], brickYpos[i]);
+            }
         }
     }
 }

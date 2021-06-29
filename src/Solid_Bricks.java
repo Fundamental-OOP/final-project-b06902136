@@ -20,7 +20,6 @@ public class Solid_Bricks extends Brick{
         for(int i = 0; i< brickXpos.length; ++i){
             if(new Rectangle(x, y, width, height).intersects(new Rectangle(brickXpos[i], brickYpos[i], brickWidth, brickHeight))){
                 collided = true;
-                break;
             }
         }
         return collided;

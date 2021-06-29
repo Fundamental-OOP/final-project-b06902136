@@ -73,10 +73,7 @@ public class Player {
         public void keyReleased(KeyEvent e) {}
         public void keyPressed(KeyEvent e) {
             if(e.getKeyCode()== command1){
-                right = false;
-                left = false;
-                down = false;
-                up = true;
+                playerIMG = new ImageIcon(up_img);
                 boolean testCollision = false;
                 if(Y >= 10){
                     for(int i = 0; i < BrickList.size(); ++i){
@@ -93,10 +90,7 @@ public class Player {
                 }
             }
             if(e.getKeyCode()== command3){
-                right = false;
-                left = true;
-                down = false;
-                up = false;
+                playerIMG = new ImageIcon(left_img);
                 boolean testCollision = false;
                 if(X >= 10){
                     for(int i = 0; i < BrickList.size(); ++i){
@@ -113,10 +107,7 @@ public class Player {
                 }
             }
             if(e.getKeyCode()== command2){
-                right = false;
-                left = false;
-                down = true;
-                up = false;
+                playerIMG = new ImageIcon(down_img);
                 boolean testCollision = false;
                 if(Y <= 540){
                     for(int i = 0; i < BrickList.size(); ++i){
@@ -133,10 +124,7 @@ public class Player {
                 }
             }
             if(e.getKeyCode() == command4){
-                right = true;
-                left = false;
-                down = false;
-                up = true;
+                playerIMG = new ImageIcon(right_img);
                 boolean testCollision = false;
                 if(X <= 540){
                     for(int i = 0; i < BrickList.size(); ++i){

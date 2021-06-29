@@ -13,7 +13,10 @@ public class Missile extends Weapon{
         super(myUser);
         super.count = 3;
         brickList = bList;
-        missileImage = new ImageIcon("missile.png");
+        if(user.up) missileImage = new ImageIcon("missile_up.png");
+        else if(user.down) missileImage = new ImageIcon("missile_down.png");
+        else if(user.left) missileImage = new ImageIcon("missile_left.png");
+        else  missileImage = new ImageIcon("missile_right.png");
         effect_list = new ArrayList<>();
     }
     @Override
@@ -84,10 +87,6 @@ public class Missile extends Weapon{
     }
     @Override
     public void draw(Component c, Graphics g) {
-        if(user.up) missileImage = new ImageIcon("missile_up.png");
-        else if(user.down) missileImage = new ImageIcon("missile_down.png");
-        else if(user.left) missileImage = new ImageIcon("missile_left.png");
-        else  missileImage = new ImageIcon("missile_right.png");
         for(ExplosionEffect e : effect_list){
             e.effect_paint(c, g);
             if(e.countDown <= 0) effect_list.remove(e);

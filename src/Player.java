@@ -9,6 +9,8 @@ public class Player {
     private Player enemy;
     private Weapon usingWeapon;
     private ImageIcon playerIMG;
+    public int EffectCount;
+    public int Speed = 10;
     public int X;
     public int Y;
     public boolean right;
@@ -98,21 +100,21 @@ public class Player {
                 down = false;
                 up = true;
                 boolean testCollision = false;
-                if(Y >= 10){
+                if(Y >= Speed){
                     for(int i = 0; i < BrickList.size(); ++i){
                         Brick b = BrickList.get(i);
                         if(testCollision) break;
                         for(int j = 0; j < b.brickOn.length; ++j){
-                            if (new Rectangle(X, Y - 10, 50, 50).intersects(new Rectangle(b.brickXpos[j], b.brickYpos[j], b.brickWidth, b.brickHeight))
+                            if (new Rectangle(X, Y - Speed, 50, 50).intersects(new Rectangle(b.brickXpos[j], b.brickYpos[j], b.brickWidth, b.brickHeight))
                                     && b.brickOn[j]) {
                                 testCollision = true;
                                 break;
                             }
                         }
                     }
-                    if(new Rectangle(X , Y - 10, 50, 50).intersects(new Rectangle(enemy.X, enemy.Y, 50, 50)))
+                    if(new Rectangle(X , Y - Speed, 50, 50).intersects(new Rectangle(enemy.X, enemy.Y, 50, 50)))
                         testCollision = true;
-                    if(!testCollision) Y -= 10;
+                    if(!testCollision) Y -= Speed;
                 }
             }
             if(e.getKeyCode()== command3){
@@ -122,21 +124,21 @@ public class Player {
                 down = false;
                 up = false;
                 boolean testCollision = false;
-                if(X >= 10){
+                if(X >= Speed){
                     for(int i = 0; i < BrickList.size(); ++i){
                         Brick b = BrickList.get(i);
                         if(testCollision) break;
                         for(int j = 0; j < b.brickOn.length; ++j){
-                            if (new Rectangle(X - 10, Y, 50, 50).intersects(new Rectangle(b.brickXpos[j], b.brickYpos[j], b.brickWidth, b.brickHeight))
+                            if (new Rectangle(X - Speed, Y, 50, 50).intersects(new Rectangle(b.brickXpos[j], b.brickYpos[j], b.brickWidth, b.brickHeight))
                                     && b.brickOn[j]) {
                                 testCollision = true;
                                 break;
                             }
                         }
                     }
-                    if(new Rectangle(X - 10, Y, 50, 50).intersects(new Rectangle(enemy.X, enemy.Y, 50, 50)))
+                    if(new Rectangle(X - Speed, Y, 50, 50).intersects(new Rectangle(enemy.X, enemy.Y, 50, 50)))
                         testCollision = true;
-                    if(!testCollision) X -= 10;
+                    if(!testCollision) X -= Speed;
                 }
             }
             if(e.getKeyCode()== command2){
@@ -151,16 +153,16 @@ public class Player {
                         Brick b = BrickList.get(i);
                         if(testCollision) break;
                         for(int j = 0; j < b.brickOn.length; ++j){
-                            if (new Rectangle(X, Y + 10, 50, 50).intersects(new Rectangle(b.brickXpos[j], b.brickYpos[j], b.brickWidth, b.brickHeight))
+                            if (new Rectangle(X, Y + Speed, 50, 50).intersects(new Rectangle(b.brickXpos[j], b.brickYpos[j], b.brickWidth, b.brickHeight))
                                     && b.brickOn[j]) {
                                 testCollision = true;
                                 break;
                             }
                         }
                     }
-                    if(new Rectangle(X , Y + 10, 50, 50).intersects(new Rectangle(enemy.X, enemy.Y, 50, 50)))
+                    if(new Rectangle(X , Y + Speed, 50, 50).intersects(new Rectangle(enemy.X, enemy.Y, 50, 50)))
                         testCollision = true;
-                    if(!testCollision) Y += 10;
+                    if(!testCollision) Y += Speed;
                 }
             }
             if(e.getKeyCode() == command4){
@@ -175,16 +177,16 @@ public class Player {
                         Brick b = BrickList.get(i);
                         if(testCollision) break;
                         for(int j = 0; j < b.brickOn.length; ++j){
-                            if(new Rectangle(X + 10, Y, 50, 50).intersects(new Rectangle(b.brickXpos[j], b.brickYpos[j], b.brickWidth, b.brickHeight))
+                            if(new Rectangle(X + Speed, Y, 50, 50).intersects(new Rectangle(b.brickXpos[j], b.brickYpos[j], b.brickWidth, b.brickHeight))
                                     && b.brickOn[j]) {
                                 testCollision = true;
                                 break;
                             }
                         }
                     }
-                    if(new Rectangle(X + 10, Y, 50, 50).intersects(new Rectangle(enemy.X, enemy.Y, 50, 50)))
+                    if(new Rectangle(X + Speed, Y, 50, 50).intersects(new Rectangle(enemy.X, enemy.Y, 50, 50)))
                         testCollision = true;
-                    if(!testCollision) X += 10;
+                    if(!testCollision) X += Speed;
                 }
             }
             if(e.getKeyCode() == command5){

@@ -14,6 +14,7 @@ public class Gameplay extends JPanel implements ActionListener {
     private Brick breakable_brick;
     public ArrayList<Brick> bList = new ArrayList<>();
     public ArrayList<Weapon> wList = new ArrayList<>();
+    private boolean play;
     public Gameplay(){
         solid_brick = new Solid_Bricks();
         breakable_brick = new Breakable_Bricks();
@@ -35,9 +36,7 @@ public class Gameplay extends JPanel implements ActionListener {
         player1.BrickList.add(breakable_brick);
         player2.BrickList.add(solid_brick);
         player2.BrickList.add(breakable_brick);
-    }
-    public void paint(){
-
+        play = true;
     }
     @Override
     public void actionPerformed(ActionEvent e){
@@ -47,7 +46,20 @@ public class Gameplay extends JPanel implements ActionListener {
         solid_brick = new Solid_Bricks();
         breakable_brick = new Breakable_Bricks();
     }
-
+    public void paint(Graphics graphics){
+        // play background
+        graphics.setColor(Color.black);
+        graphics.fillRect(0, 0, 650, 600);
+        // right side background
+        graphics.setColor(Color.DARK_GRAY);
+        graphics.fillRect(660, 0, 140, 600);
+        // draw bricks
+        breakable_brick.draw(this, graphics);
+        solid_brick.draw(this, graphics);
+    }
+    public void setPlay(){
+        play = true;
+    }
     private class resetListener implements KeyListener{
         public void keyTyped(KeyEvent e) {}
         public void keyReleased(KeyEvent e) {}
@@ -64,6 +76,7 @@ public class Gameplay extends JPanel implements ActionListener {
                 player1.BrickList.add(breakable_brick);
                 player2.BrickList.add(solid_brick);
                 player2.BrickList.add(breakable_brick);
+                setPlay();
             }
 
         }

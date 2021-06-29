@@ -42,7 +42,8 @@ public class Gameplay extends JPanel implements ActionListener {
         player2 = new Player(400, 500, false, false, false, true, "player2_tank_right.png",
                 "player2_tank_left.png", "player2_tank_up.png", "player2_tank_down.png",
                 KeyEvent.VK_UP, KeyEvent.VK_DOWN, KeyEvent.VK_LEFT, KeyEvent.VK_RIGHT, KeyEvent.VK_J, KeyEvent.VK_K, KeyEvent.VK_L, wList);
-
+        player1.setEnemy(player2);
+        player2.setEnemy(player1);
         setFocusable(true);
         player1.BrickList.add(solid_brick);
         player1.BrickList.add(breakable_brick);

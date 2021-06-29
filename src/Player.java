@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 public class Player {
     private ArrayList<Weapon> WeaponList;
+    private Player enemy;
     private Weapon usingWeapon;
     private ImageIcon playerIMG;
     public int X;
@@ -76,6 +77,10 @@ public class Player {
         playerIMG.paintIcon(component, graphics, X, Y);
     }
 
+    public void setEnemy(Player Enemy){
+        enemy = Enemy;
+    }
+
     public ArrayList<Weapon> getWeaponList(){
         return WeaponList;
     }
@@ -100,6 +105,8 @@ public class Player {
                             }
                         }
                     }
+                    if(new Rectangle(X , Y - 10, 50, 50).intersects(new Rectangle(enemy.X, enemy.Y, 50, 50)))
+                        testCollision = true;
                     if(!testCollision) Y -= 10;
                 }
             }
@@ -117,6 +124,8 @@ public class Player {
                             }
                         }
                     }
+                    if(new Rectangle(X - 10, Y, 50, 50).intersects(new Rectangle(enemy.X, enemy.Y, 50, 50)))
+                        testCollision = true;
                     if(!testCollision) X -= 10;
                 }
             }
@@ -134,6 +143,8 @@ public class Player {
                             }
                         }
                     }
+                    if(new Rectangle(X , Y + 10, 50, 50).intersects(new Rectangle(enemy.X, enemy.Y, 50, 50)))
+                        testCollision = true;
                     if(!testCollision) Y += 10;
                 }
             }
@@ -151,6 +162,8 @@ public class Player {
                             }
                         }
                     }
+                    if(new Rectangle(X + 10, Y, 50, 50).intersects(new Rectangle(enemy.X, enemy.Y, 50, 50)))
+                        testCollision = true;
                     if(!testCollision) X += 10;
                 }
             }

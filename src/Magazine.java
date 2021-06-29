@@ -11,9 +11,7 @@ public class Magazine extends Buff{
         int y[] = {0};
         buffXpos = x;
         buffYpos = y;
-        count = new int[1];
         buffOn = new boolean[1];
-        Arrays.fill(count, 2);
         Arrays.fill(buffOn, true);
     }
     public void draw(Component component, Graphics graphics){

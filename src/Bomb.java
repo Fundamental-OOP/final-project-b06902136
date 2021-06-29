@@ -14,11 +14,9 @@ public class Bomb extends Weapon{
     private int countDown;
     private int x;
     private int y;
-<<<<<<< HEAD
     //private int times;
-=======
     Breakable_Bricks bricks;
->>>>>>> 468b08e851ecdd6dcbf57a585f0e8217f3efea22
+
     private ImageIcon bombImage;
     private ArrayList<Brick>bricksList;
     public Bomb(Player myUser, ArrayList<Brick> bricksList){
@@ -26,11 +24,7 @@ public class Bomb extends Weapon{
         super.count = 3;
         this.bombImage = new ImageIcon("bomb.png");
         this.bricksList = bricksList;
-<<<<<<< HEAD
-=======
-        this.isUsing = true;
-        this.countDown = 15000;
->>>>>>> 468b08e851ecdd6dcbf57a585f0e8217f3efea22
+        countDown = 2000;
     }
 
     @Override
@@ -43,7 +37,6 @@ public class Bomb extends Weapon{
                 return true;
             }
             this.explode();
-            this.isUsing = false;
             return true;
         }
         else{
@@ -57,16 +50,8 @@ public class Bomb extends Weapon{
         y = Y;
     }
     @Override
-<<<<<<< HEAD
-    public void draw(Component c, Graphics g){
+    public void draw(Component c, Graphics g) {
         bombImage.paintIcon(c, g, this.x, this.y);
-        update();
-=======
-    public void draw(Component c,Graphics g){
-        if(this.isUsing){
-            bombImage.paintIcon(c, g, this.x, this.y);
-        }
->>>>>>> 468b08e851ecdd6dcbf57a585f0e8217f3efea22
     }
 
     @Override
@@ -74,18 +59,9 @@ public class Bomb extends Weapon{
         Bomb newBomb = new Bomb(user, bricksList);
         newBomb.setX(user.X);
         newBomb.setY(user.Y);
-        return new Bomb(user, bricksList);
+        return newBomb;
     }
 
-    @Override
-    public int getX(){
-        return this.x;
-    }
-
-    @Override
-    public int getY(){
-        return this.y;
-    }
 
     @Override
     public void move(String face){

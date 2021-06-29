@@ -1,16 +1,20 @@
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.PriorityQueue;
+import java.util.Queue;
 
 public class Missile extends Weapon{
     private int x, y;
     public ArrayList<Brick> brickList;
     public ImageIcon missileImage;
+    public ArrayList<ExplosionEffect> effect_list;
     public Missile(Player myUser, ArrayList<Brick> bList) {
         super(myUser);
         super.count = 3;
         brickList = bList;
         missileImage = new ImageIcon("missile.png");
+        effect_list = new ArrayList<>();
     }
     @Override
     public boolean perform(Player enemy) {
@@ -43,7 +47,14 @@ public class Missile extends Weapon{
                         user.shootDirection = "";
                         return true;
                     }
-                    else return false;
+                    else{
+                        int Y;
+                        if(user.up) Y = y - 50;
+                        else Y = y + 50;
+                        ExplosionEffect e = new ExplosionEffect(x, Y);
+                        effect_list.add(e);
+                        return false;
+                    }
                 }
             }
             else if(user.right || user.left){
@@ -53,7 +64,14 @@ public class Missile extends Weapon{
                         user.shootDirection = "";
                         return true;
                     }
-                    else return false;
+                    else{
+                        int X;
+                        if(user.left) X = x - 50;
+                        else X = x + 50;
+                        ExplosionEffect e = new ExplosionEffect(X, y);
+                        effect_list.add(e);
+                        return false;
+                    }
                 }
             }
         }
@@ -70,6 +88,10 @@ public class Missile extends Weapon{
         else if(user.down) missileImage = new ImageIcon("missile_down.png");
         else if(user.left) missileImage = new ImageIcon("missile_left.png");
         else  missileImage = new ImageIcon("missile_right.png");
+        for(ExplosionEffect e : effect_list){
+            e.effect_paint(c, g);
+            if(e.countDown <= 0) effect_list.remove(e);
+        }
         missileImage.paintIcon(c, g, x, y);
     }
     @Override
@@ -121,6 +143,23 @@ public class Missile extends Weapon{
         }
         else {
             return null;
+        }
+    }
+    public class ExplosionEffect{
+        public ImageIcon effectIMG;
+        public int countDown;
+        public int X;
+        public int Y;
+        public ExplosionEffect(int x, int y){
+            System.out.println("hello2");
+            effectIMG = new ImageIcon("explosion_effect.png");
+            countDown = 28;
+            X = x;
+            Y = y;
+        }
+        public void effect_paint(Component c, Graphics g){
+            --countDown;
+            effectIMG.paintIcon(c, g, X, Y);
         }
     }
 }

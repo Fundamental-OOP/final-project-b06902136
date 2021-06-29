@@ -10,12 +10,15 @@ import java.awt.Rectangle;
 import javax.swing.ImageIcon;
 
 public class Bomb extends Weapon{
-
+    public Component component;
+    public Graphics graphics;
     private int countDown;
     private int x;
     private int y;
+    private int effectCountDown;
     //private int times;
     Breakable_Bricks bricks;
+    private ImageIcon explosion_effect;
 
     private ImageIcon bombImage;
     private ArrayList<Brick>bricksList;
@@ -25,12 +28,15 @@ public class Bomb extends Weapon{
         this.bombImage = new ImageIcon("bomb.png");
         this.bricksList = bricksList;
         countDown = 800;
+        effectCountDown = 100;
+        explosion_effect = new ImageIcon("explosion_effect.png");
     }
 
     @Override
     public boolean perform(Player enemy){
         this.update();
-        if(this.countDown <= 0){
+        if(this.countDown == 0){
+            this.update();
             if(collisionCheck(enemy.X, enemy.Y)){
                 user.score += 10;
                 --enemy.lives;
@@ -40,10 +46,20 @@ public class Bomb extends Weapon{
                 --user.lives;
             }
             this.explode();
-            return true;
+            return false;
         }
         else{
-            return false;
+            if(countDown < 0 && effectCountDown > 0){
+                --effectCountDown;
+                return false;
+            }
+            else if(effectCountDown == 0){
+                user.Shoot = false;
+                user.shootDirection = "";
+                user.setUsingWeapon(null);
+                return true;
+            }
+            else return false;
         }
     }
     public void setX(int X){
@@ -54,7 +70,13 @@ public class Bomb extends Weapon{
     }
     @Override
     public void draw(Component c, Graphics g) {
-        bombImage.paintIcon(c, g, this.x, this.y);
+        if(countDown > 0) bombImage.paintIcon(c, g, this.x, this.y);
+        else{
+            for(int i = 0; i < 3; ++i){
+                for(int j = 0; j <3; ++j)
+                    explosion_effect.paintIcon(c, g, x-50+50*i, y-50+50*j);
+            }
+        }
     }
 
     @Override
@@ -86,20 +108,15 @@ public class Bomb extends Weapon{
         return;
     }
     private boolean collisionCheck(int Xpos, int Ypos){
-        if(new Rectangle(x - 30, y - 30, 90, 90)
+        if(new Rectangle(x - 50, y - 50, 150, 150)
                 .intersects(new Rectangle(Xpos, Ypos, 50, 50))){
             return true;
         }
         return false;
     }
     private void explode(){
-        for(Brick br : bricksList){
-            if(br.collisionCheck(1, x - 30 , y - 30, 90, 90)) {
-                user.Shoot = false;
-                user.shootDirection = "";
-                user.setUsingWeapon(null);
-            }
-        }
+        for(Brick br : bricksList)
+            br.collisionCheck(1, x - 50 , y - 50, 150, 150);
 
     }
 }

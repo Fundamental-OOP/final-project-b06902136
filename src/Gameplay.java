@@ -176,6 +176,8 @@ public class Gameplay extends JPanel implements ActionListener {
         public void keyPressed(KeyEvent e){
             if(e.getKeyCode() == KeyEvent.VK_SPACE && (player1.lives == 0 || player2.lives == 0)){
                 setBrick();
+                removeKeyListener(player1.myListener);
+                removeKeyListener(player2.myListener);
                 player1 = new Player(200, 550, false, false, false, true, "player1_tank_right.png",
                         "player1_tank_left.png", "player1_tank_up.png", "player1_tank_down.png",
                         KeyEvent.VK_W, KeyEvent.VK_S, KeyEvent.VK_A, KeyEvent.VK_D, KeyEvent.VK_R, KeyEvent.VK_T, KeyEvent.VK_Y, wList);

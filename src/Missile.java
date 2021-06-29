@@ -21,14 +21,25 @@ public class Missile extends Weapon{
     }
     @Override
     public boolean perform(Player enemy) {
+        if(user.shootDirection.equals("hit") && effect_list.isEmpty()) {
+            user.shootDirection = "";
+            user.Shoot = false;
+            return true;
+        }
+        else if(user.shootDirection.equals("hit") && !effect_list.isEmpty()) return false;
         if(user.left || user.right){
             if(new Rectangle(getX(), getY(), 50, 24)
                     .intersects(new Rectangle(enemy.X, enemy.Y, 50, 50))) {
                 user.score += 10;
                 enemy.lives -= 1;
-                user.Shoot = false;
-                user.shootDirection = "";
-                return true;
+                user.shootDirection = "hit";
+                int X;
+                if(user.left) X = enemy.X + 10;
+                else X = enemy.X - 10;
+                ExplosionEffect e = new ExplosionEffect(X,enemy.Y);
+                e.countDown = 10;
+                effect_list.add(e);
+                return false;
             }
         }
         else if(user.up || user.down){
@@ -36,9 +47,14 @@ public class Missile extends Weapon{
                     .intersects(new Rectangle(enemy.X, enemy.Y, 50, 50))) {
                 user.score += 10;
                 enemy.lives -= 1;
-                user.Shoot = false;
-                user.shootDirection = "";
-                return true;
+                user.shootDirection = "hit";
+                int Y;
+                if(user.up) Y = enemy.Y + 10;
+                else Y = enemy.Y - 10;
+                ExplosionEffect e = new ExplosionEffect(enemy.X, Y);
+                e.countDown = 10;
+                effect_list.add(e);
+                return false;
             }
         }
         for(int i = 0; i < brickList.size(); ++i){
@@ -79,6 +95,7 @@ public class Missile extends Weapon{
             }
         }
         if(getY() < 1 || getY() > 580 || getX() < 1 || getX() > 600){
+            ExplosionEffect e = new ExplosionEffect(enemy.X + 15, enemy.Y + 15);
             user.Shoot = false;
             user.shootDirection = "";
             return true;
@@ -91,7 +108,7 @@ public class Missile extends Weapon{
             e.effect_paint(c, g);
             if(e.countDown <= 0) effect_list.remove(e);
         }
-        missileImage.paintIcon(c, g, x, y);
+        if(user.Shoot) missileImage.paintIcon(c, g, x, y);
     }
     @Override
     public int getX() {
@@ -102,8 +119,8 @@ public class Missile extends Weapon{
         return y;
     }
     @Override
-    public void move(String face)
-    {
+    public void move(String face){
+        if(user.shootDirection.equals("hit")) return;
         if (face.equals("right")) {
             x += 2;
         }
@@ -158,6 +175,7 @@ public class Missile extends Weapon{
         public void effect_paint(Component c, Graphics g){
             --countDown;
             effectIMG.paintIcon(c, g, X, Y);
+            System.out.println("hello2");
         }
     }
 }

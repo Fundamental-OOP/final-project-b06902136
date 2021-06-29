@@ -4,25 +4,27 @@ import java.util.Arrays;
 
 public class Magazine extends Buff{
     public ImageIcon MagazineImage;
-    public Magazine() {
-        super();
+    public Magazine(int x, int y) {
         MagazineImage = new ImageIcon("magazine.png");
-        int x[] = {0};
-        int y[] = {0};
-        buffXpos = x;
-        buffYpos = y;
-        buffOn = new boolean[1];
-        Arrays.fill(buffOn, true);
+        super.buffXpos = x;
+        super.buffYpos = y;
+        buffOn =true;
     }
     public void draw(Component component, Graphics graphics){
-        for(int i = 0; i < buffOn.length; ++i) {
-            if(buffOn[i])
-                MagazineImage.paintIcon(component, graphics, buffXpos[i], buffYpos[i]);
-        }
+
+        if(super.buffOn)
+            MagazineImage.paintIcon(component, graphics, super.buffXpos, super.buffYpos);
+
     }
 
     public boolean acquireCheck(Player p){
-
+        if(new Rectangle(super.buffXpos, super.buffYpos, 50, 50)
+                .intersects(new Rectangle(p.X, p.Y, 50, 50))) {
+            p.getWeaponList().get(1).count+=10;
+            p.getWeaponList().get(2).count+=10;
+            buffOn = false;
+            return true;
+        }
         return false;
     }
 }

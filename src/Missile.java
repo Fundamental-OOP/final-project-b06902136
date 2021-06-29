@@ -51,7 +51,7 @@ public class Missile extends Weapon{
                         int Y;
                         if(user.up) Y = y - 50;
                         else Y = y + 50;
-                        ExplosionEffect e = new ExplosionEffect(x, Y);
+                        ExplosionEffect e = new ExplosionEffect(x-20, Y);
                         effect_list.add(e);
                         return false;
                     }

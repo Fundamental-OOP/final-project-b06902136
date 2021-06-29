@@ -24,14 +24,15 @@ public class Gameplay extends JPanel implements ActionListener {
     private resetListener ResetListener;
 
     public Gameplay(){
+        ResetListener = new resetListener();
         solid_brick = new Solid_Bricks();
         breakable_brick = new Breakable_Bricks();
         bList.add(solid_brick);
         bList.add(breakable_brick);
 
-        Bullet bullet = new Bullet(bList);
-        Missile missile = new Missile(bList);
-        Bomb bomb = new Bomb(bList);
+        Bullet bullet = new Bullet(new Player(), bList);
+        Missile missile = new Missile(new Player(), bList);
+        Bomb bomb = new Bomb(new Player(), bList);
         wList.add(bullet);
         wList.add(missile);
         wList.add(bomb);
@@ -98,10 +99,9 @@ public class Gameplay extends JPanel implements ActionListener {
                 else{
                     player1.getUsingWeapon().move(player1.shootDirection);
                     player1.getUsingWeapon().draw(this, graphics);
-                    player1.getUsingWeapon().draw(this, graphics);
                 }
 
-                if(player1.getUsingWeapon().perform(player1, player2)){
+                if(player1.getUsingWeapon().perform(player2)){
                     player1.setUsingWeapon(null);
                     player1.Shoot = false;
                     player1.shootDirection = "";
@@ -125,48 +125,47 @@ public class Gameplay extends JPanel implements ActionListener {
                 else{
                     player2.getUsingWeapon().move(player2.shootDirection);
                     player2.getUsingWeapon().draw(this, graphics);
-                    player2.getUsingWeapon().draw(this, graphics);
                 }
 
-                if(player2.getUsingWeapon().perform(player2, player1)){
+                if(player2.getUsingWeapon().perform(player1)){
                     player2.setUsingWeapon(null);
                     player2.Shoot = false;
                     player2.shootDirection = "";
                 }
             }
-            // the scores
-            graphics.setColor(Color.white);
-            graphics.setFont(new Font("serif",Font.BOLD, 15));
-            graphics.drawString("Scores", 700,30);
-            graphics.drawString("Player 1:  "+ player1.score, 670,60);
-            graphics.drawString("Player 2:  "+ player2.score, 670,90);
-
-            graphics.drawString("Lives", 700,150);
-            graphics.drawString("Player 1:  "+ player1.lives, 670,180);
-            graphics.drawString("Player 2:  "+ player2.lives, 670,210);
-
-            if(player1.lives == 0){
-                graphics.setColor(Color.white);
-                graphics.setFont(new Font("serif",Font.BOLD, 60));
-                graphics.drawString("Game Over", 200,300);
-                graphics.drawString("Player 2 Won", 180,380);
-                graphics.setColor(Color.white);
-                graphics.setFont(new Font("serif",Font.BOLD, 30));
-                graphics.drawString("(Space to Restart)", 230,430);
-                setPlay(false);
-            }
-            else if(player2.lives == 0){
-                graphics.setColor(Color.white);
-                graphics.setFont(new Font("serif",Font.BOLD, 60));
-                graphics.drawString("Game Over", 200,300);
-                graphics.drawString("Player 1 Won", 180,380);
-                graphics.setColor(Color.white);
-                graphics.setFont(new Font("serif",Font.BOLD, 30));
-                graphics.drawString("(Space to Restart)", 230,430);
-                setPlay(false);
-            }
-            graphics.dispose();
         }
+        // the scores
+        graphics.setColor(Color.white);
+        graphics.setFont(new Font("serif",Font.BOLD, 15));
+        graphics.drawString("Scores", 700,30);
+        graphics.drawString("Player 1:  "+ player1.score, 670,60);
+        graphics.drawString("Player 2:  "+ player2.score, 670,90);
+
+        graphics.drawString("Lives", 700,150);
+        graphics.drawString("Player 1:  "+ player1.lives, 670,180);
+        graphics.drawString("Player 2:  "+ player2.lives, 670,210);
+
+        if(player1.lives == 0){
+            graphics.setColor(Color.white);
+            graphics.setFont(new Font("serif",Font.BOLD, 60));
+            graphics.drawString("Game Over", 200,300);
+            graphics.drawString("Player 2 Won", 180,380);
+            graphics.setColor(Color.white);
+            graphics.setFont(new Font("serif",Font.BOLD, 30));
+            graphics.drawString("(Space to Restart)", 230,430);
+            setPlay(false);
+        }
+        else if(player2.lives == 0){
+            graphics.setColor(Color.white);
+            graphics.setFont(new Font("serif",Font.BOLD, 60));
+            graphics.drawString("Game Over", 200,300);
+            graphics.drawString("Player 1 Won", 180,380);
+            graphics.setColor(Color.white);
+            graphics.setFont(new Font("serif",Font.BOLD, 30));
+            graphics.drawString("(Space to Restart)", 230,430);
+            setPlay(false);
+        }
+        graphics.dispose();
     }
     public void setPlay(boolean b){
         play = b;

@@ -15,9 +15,9 @@ public class Solid_Bricks extends Brick{
         Arrays.fill(brickOn, true);
     }
     @Override
-    public boolean collisionCheck(int n, int x, int y, int width, int height) {
+    public boolean collisionCheck(int damage, int x, int y, int width, int height) {
         boolean collided = false;
-        for(int i=0; i< brickXpos.length; ++i){
+        for(int i = 0; i< brickXpos.length; ++i){
             if(new Rectangle(x, y, width, height).intersects(new Rectangle(brickXpos[i], brickYpos[i], brickWidth, brickHeight))){
                 collided = true;
                 break;

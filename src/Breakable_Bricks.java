@@ -3,8 +3,11 @@ import java.awt.*;
 import java.util.Arrays;
 
 public class Breakable_Bricks extends Brick{
+    public ImageIcon broken;
+
     public Breakable_Bricks(){
         super();
+        broken = new ImageIcon("break_brick_cracked.jpg");
         brickImage = new ImageIcon("break_brick.jpg");
         int x[] = {50,350,450,550,50,300,350,450,550,150,150,450,550,
                    250,50,100,150,550,250,350,450,550,50,250,350,550,
@@ -22,20 +25,28 @@ public class Breakable_Bricks extends Brick{
         Arrays.fill(brickOn, true);
     }
     @Override
-    public boolean collisionCheck(int n, int x, int y, int width, int height){
+    public boolean collisionCheck(int damage, int x, int y, int width, int height){
         boolean collided = false;
         for(int i=0; i< brickOn.length; ++i) {
             if(brickOn[i]){
                 if(new Rectangle(x, y, width, height).intersects(new Rectangle(brickXpos[i], brickYpos[i], brickWidth, brickHeight))) {
-                    count[i] -= n;
-                    if(count[i] <= 0) brickOn[i] = false;
-                    if(count[i] == 1) brickImage = new ImageIcon("break_brick_cracked.jpg");
-
+                    count[i] -= damage;
+                    if(count[i] <= 0){
+                        brickOn[i] = false;
+                    }
                     collided = true;
                     break;
                 }
             }
         }
         return collided;
+    }
+    @Override
+    public void draw(Component component, Graphics graphics){
+        for(int i = 0; i < brickOn.length; ++i) {
+            if(brickOn[i])
+                if(count[i] > 1) brickImage.paintIcon(component, graphics, brickXpos[i], brickYpos[i]);
+                else broken.paintIcon(component, graphics, brickXpos[i], brickYpos[i]);
+        }
     }
 }

@@ -22,8 +22,7 @@ public class Brick {
                 brickImage.paintIcon(component, graphics, brickXpos[i], brickYpos[i]);
         }
     }
-    public boolean collisionCheck(int n, int x, int y, int width, int height){
+    public boolean collisionCheck(int damage, int x, int y, int width, int height){
         return true;
     }
-
 }

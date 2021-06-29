@@ -18,14 +18,15 @@ public class Bomb extends Weapon{
     private ImageIcon bombImage;
     private ArrayList<Brick>bricksList;
     public boolean isUsing;
-    Bomb(ArrayList<Brick>bricksList){
-        this.bombImage = new ImageIcon("mine.png");
+    public Bomb(Player myUser, ArrayList<Brick> bricksList){
+        super(myUser);
+        this.bombImage = new ImageIcon("bomb.png");
         this.bricksList = bricksList;
         this.isUsing = true;
     }
 
     @Override
-    public boolean perform(Player user,Player enemy){
+    public boolean perform(Player enemy){
         this.update();
         if(this.countDown <= 0){
             if(collisionCheck(enemy.X, enemy.Y)){
@@ -40,18 +41,26 @@ public class Bomb extends Weapon{
             return false;
         }
     }
-
+    public void setX(int X){
+        x = X;
+    }
+    public void setY(int Y){
+        y = Y;
+    }
     @Override
     public void draw(Component c,Graphics g){
         if(this.isUsing){
-            bombImage.paintIcon(c,g,this.x,this.y);
+            bombImage.paintIcon(c, g, this.x, this.y);
             update();
         }
     }
 
     @Override
-    public Weapon create(){
-        return new Bomb(bricksList);
+    public Weapon create(Player user){
+        Bomb newBomb = new Bomb(user, bricksList);
+        newBomb.setX(user.X);
+        newBomb.setX(user.Y);
+        return new Bomb(user, bricksList);
     }
 
     @Override
@@ -72,8 +81,8 @@ public class Bomb extends Weapon{
     @Override
     public Weapon releaseNewOne(){
         if(super.count > 0){
-            super.count -= 1;
-            return this.create();
+            --super.count;
+            return this.create(user);
         }else{
             return null;
         }

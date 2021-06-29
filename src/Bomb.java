@@ -23,6 +23,7 @@ public class Bomb extends Weapon{
         this.bombImage = new ImageIcon("bomb.png");
         this.bricksList = bricksList;
         this.isUsing = true;
+        this.countDown = 15;
     }
 
     @Override
@@ -35,6 +36,7 @@ public class Bomb extends Weapon{
                 return true;
             }
             this.explode();
+            this.isUsing = false;
             return true;
         }
         else{
@@ -51,7 +53,6 @@ public class Bomb extends Weapon{
     public void draw(Component c,Graphics g){
         if(this.isUsing){
             bombImage.paintIcon(c, g, this.x, this.y);
-            update();
         }
     }
 

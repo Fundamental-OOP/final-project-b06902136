@@ -15,6 +15,8 @@ public class Gameplay extends JPanel implements ActionListener {
     public ArrayList<Brick> bList = new ArrayList<>();
     public ArrayList<Weapon> wList = new ArrayList<>();
     private boolean play;
+    public Timer timer;
+    private int delay = 8;
     public Gameplay(){
         solid_brick = new Solid_Bricks();
         breakable_brick = new Breakable_Bricks();
@@ -37,6 +39,8 @@ public class Gameplay extends JPanel implements ActionListener {
         player2.BrickList.add(solid_brick);
         player2.BrickList.add(breakable_brick);
         play = true;
+        timer = new Timer(delay, this);
+        timer.start();
     }
     @Override
     public void actionPerformed(ActionEvent e){
@@ -131,10 +135,10 @@ public class Gameplay extends JPanel implements ActionListener {
                 graphics.setFont(new Font("serif",Font.BOLD, 60));
                 graphics.drawString("Game Over", 200,300);
                 graphics.drawString("Player 2 Won", 180,380);
-                play = false;
                 graphics.setColor(Color.white);
                 graphics.setFont(new Font("serif",Font.BOLD, 30));
                 graphics.drawString("(Space to Restart)", 230,430);
+                setPlay(false);
             }
             else if(player2.lives == 0){
                 graphics.setColor(Color.white);
@@ -144,13 +148,13 @@ public class Gameplay extends JPanel implements ActionListener {
                 graphics.setColor(Color.white);
                 graphics.setFont(new Font("serif",Font.BOLD, 30));
                 graphics.drawString("(Space to Restart)", 230,430);
-                play = false;
+                setPlay(false);
             }
             graphics.dispose();
         }
     }
-    public void setPlay(){
-        play = true;
+    public void setPlay(boolean b){
+        play = b;
     }
     private class resetListener implements KeyListener{
         public void keyTyped(KeyEvent e) {}
@@ -168,7 +172,8 @@ public class Gameplay extends JPanel implements ActionListener {
                 player1.BrickList.add(breakable_brick);
                 player2.BrickList.add(solid_brick);
                 player2.BrickList.add(breakable_brick);
-                setPlay();
+                setPlay(true);
+                repaint();
             }
 
         }

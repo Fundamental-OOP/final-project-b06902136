@@ -1,4 +1,6 @@
 import javax.swing.*;
+import java.awt.*;
+import java.util.*;
 
 public class Buff {
     public int buffXpos;
@@ -9,4 +11,24 @@ public class Buff {
     public boolean acquireCheck(Player p){
         return false;
     }
+    public boolean isCollision(ArrayList<Brick>brickList){
+        for(Brick br : brickList){
+            if(br.collisionCheck(0, buffXpos, buffYpos, buffWidth, buffHeight)){
+                return false; // if collision with bricks
+            }
+        }
+        return true;
+    }
+    public void generateBuff(ArrayList<Brick>brickList){
+        while(true){
+            //random position as 10 units increment
+            buffXpos = (int)(10 * Math.floor(Math.random() * 61));
+            buffYpos = (int)(10 * Math.floor(Math.random() * 56));
+            if(isCollision(brickList)){
+                break;
+            }
+        }
+        return;
+    }
 }
+

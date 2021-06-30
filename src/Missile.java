@@ -35,6 +35,7 @@ public class Missile extends Weapon{
                 user.shootDirection = "hit";
                 ExplosionEffect e = new ExplosionEffect(enemy.X+13,enemy.Y);
                 e.countDown = 10;
+                e.limit = 5;
                 effect_list.add(e);
                 return false;
             }
@@ -47,6 +48,7 @@ public class Missile extends Weapon{
                 user.shootDirection = "hit";
                 ExplosionEffect e = new ExplosionEffect(enemy.X, enemy.Y + 13);
                 e.countDown = 10;
+                e.limit = 5;
                 effect_list.add(e);
                 return false;
             }
@@ -156,19 +158,25 @@ public class Missile extends Weapon{
         }
     }
     public class ExplosionEffect{
-        public ImageIcon effectIMG;
+        public ImageIcon effectIMG1;
+        public ImageIcon effectIMG2;
         public int countDown;
+        public int limit;
         public int X;
         public int Y;
         public ExplosionEffect(int x, int y){
-            effectIMG = new ImageIcon("explosion_effect1.png");
-            countDown = 28;
+            effectIMG1 = new ImageIcon("explosion_effect1.png");
+            effectIMG2 = new ImageIcon("explosion_effect2.png");
+            countDown = 34;
+            limit = 17;
             X = x;
             Y = y;
         }
         public void effect_paint(Component c, Graphics g){
             --countDown;
-            effectIMG.paintIcon(c, g, X, Y);
+            if(countDown < limit)
+                effectIMG1.paintIcon(c, g, X, Y);
+            else effectIMG2.paintIcon(c, g, x, y);
         }
     }
 }

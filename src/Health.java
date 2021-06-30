@@ -19,7 +19,7 @@ public class Health extends Buff{
     }
     @Override
     public boolean acquireCheck(Player p){
-        if(new Rectangle(buffXpos, buffYpos, 50, 50)
+        if(new Rectangle(buffXpos, buffYpos, 30, 30)
                 .intersects(new Rectangle(p.X, p.Y, 50, 50))) {
             p.lives += 1;
             buffOn = false;

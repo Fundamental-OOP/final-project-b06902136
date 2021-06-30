@@ -20,7 +20,7 @@ public class Magazine extends Buff{
     }
 
     public boolean acquireCheck(Player p){
-        if(new Rectangle(buffXpos, buffYpos, 50, 50)
+        if(new Rectangle(buffXpos, buffYpos, 30, 30)
                 .intersects(new Rectangle(p.X, p.Y, 50, 50))) {
             p.getWeaponList().get(1).count+=10;
             p.getWeaponList().get(2).count+=10;

@@ -9,6 +9,8 @@ public class Magazine extends Buff{
         buffXpos = x;
         buffYpos = y;
         buffOn =true;
+        buffWidth = 50;
+        buffHeight = 50;
     }
     public void draw(Component component, Graphics graphics){
 

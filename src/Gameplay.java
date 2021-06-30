@@ -40,11 +40,11 @@ public class Gameplay extends JPanel implements ActionListener {
         wList.add(missile);
         wList.add(bomb);
 
-        player1 = new Player(200, 550, false, false, false, true, "player1_tank_right.png",
-                "player1_tank_left.png", "player1_tank_up.png", "player1_tank_down.png",
+        player1 = new Player(200, 550, false, false, false, true, "player3_tank_right.png",
+                "player3_tank_left.png", "player3_tank_up.png", "player3_tank_down.png",
                 KeyEvent.VK_W, KeyEvent.VK_S, KeyEvent.VK_A, KeyEvent.VK_D, KeyEvent.VK_R, KeyEvent.VK_T, KeyEvent.VK_Y, wList);
-        player2 = new Player(400, 550, false, false, false, true, "player2_tank_right.png",
-                "player2_tank_left.png", "player2_tank_up.png", "player2_tank_down.png",
+        player2 = new Player(400, 550, false, false, false, true, "player4_tank_right.png",
+                "player4_tank_left.png", "player4_tank_up.png", "player4_tank_down.png",
                 KeyEvent.VK_UP, KeyEvent.VK_DOWN, KeyEvent.VK_LEFT, KeyEvent.VK_RIGHT, KeyEvent.VK_J, KeyEvent.VK_K, KeyEvent.VK_L, wList);
         player1.setEnemy(player2);
         player2.setEnemy(player1);

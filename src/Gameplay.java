@@ -138,10 +138,13 @@ public class Gameplay extends JPanel implements ActionListener {
             }
 
             if(buffList.isEmpty()){
-                //if(((int)Math.random()*100)%2 == 1)
+                if(buff_generator.count<0){
                     buffList.add(buff_generator.GenerateBuff("Magazine"));
-                //else
                     buffList.add(buff_generator.GenerateBuff("Health"));
+                    buff_generator.count = 500;
+                }else
+                    buff_generator.count--;
+
             }else{
                 for(Buff buff:buffList){
                     buff.draw(this, graphics);

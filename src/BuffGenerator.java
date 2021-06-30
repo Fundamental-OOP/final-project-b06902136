@@ -3,8 +3,10 @@ import java.util.ArrayList;
 public class BuffGenerator {
 
     ArrayList<Brick> bricks;
+    public int count;
 
     BuffGenerator(ArrayList<Brick> blist){
+        count = 500;
         bricks = blist;
     }
 

@@ -107,10 +107,12 @@ public class Bomb extends Weapon{
 
     @Override
     public Weapon releaseNewOne(){
-        if(super.count > 0){
-            --super.count;
+        if(count > 0){
+            --count;
             return this.create(user);
         }else{
+            user.shootDirection = "";
+            user.Shoot = false;
             return null;
         }
     }

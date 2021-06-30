@@ -194,18 +194,18 @@ public class Player {
             }
             if(e.getKeyCode() == command5){
                 if(Shoot) return;
-                usingWeapon = WeaponList.get(0).releaseNewOne();
                 Shoot = true;
+                usingWeapon = WeaponList.get(0).releaseNewOne();
             }
             if(e.getKeyCode() == command6){
                 if(Shoot) return;
-                usingWeapon = WeaponList.get(1).releaseNewOne();
                 Shoot = true;
+                usingWeapon = WeaponList.get(1).releaseNewOne();
             }
             if(e.getKeyCode() == command7){
                 if(Shoot) return;
-                usingWeapon = WeaponList.get(2).releaseNewOne();
                 Shoot = true;
+                usingWeapon = WeaponList.get(2).releaseNewOne();
             }
         }
     }

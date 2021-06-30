@@ -149,11 +149,13 @@ public class Missile extends Weapon{
     }
     @Override
     public Weapon releaseNewOne(){
-        if (super.count > 0) {
-            --super.count;
+        if (count > 0) {
+            --count;
             return  this.create(user);
         }
         else {
+            user.Shoot = false;
+            user.shootDirection = "";
             return null;
         }
     }

@@ -9,6 +9,10 @@ public class Missile extends Weapon{
     public ArrayList<Brick> brickList;
     public ImageIcon missileImage;
     public ArrayList<ExplosionEffect> effect_list;
+    private boolean up;
+    private boolean down;
+    private boolean left;
+    private boolean right;
     public Missile(Player myUser, ArrayList<Brick> bList) {
         super(myUser);
         super.count = 10;
@@ -18,6 +22,10 @@ public class Missile extends Weapon{
         else if(user.left) missileImage = new ImageIcon("missile_left.png");
         else  missileImage = new ImageIcon("missile_right.png");
         effect_list = new ArrayList<>();
+        up = user.up;
+        down = user.down;
+        right = user.right;
+        left = user.left;
     }
     @Override
     public boolean perform(Player enemy) {
@@ -27,7 +35,7 @@ public class Missile extends Weapon{
             return true;
         }
         else if(user.shootDirection.equals("hit") && !effect_list.isEmpty()) return false;
-        if(user.left || user.right){
+        if(left || right){
             if(new Rectangle(getX(), getY(), 50, 24)
                     .intersects(new Rectangle(enemy.X, enemy.Y, 50, 50))) {
                 user.score += 10;
@@ -40,7 +48,7 @@ public class Missile extends Weapon{
                 return false;
             }
         }
-        else if(user.up || user.down){
+        else if(up || down){
             if(new Rectangle(getX(), getY(), 24, 50)
                     .intersects(new Rectangle(enemy.X, enemy.Y, 50, 50))) {
                 user.score += 10;
@@ -55,7 +63,7 @@ public class Missile extends Weapon{
         }
         for(int i = 0; i < brickList.size(); ++i){
             Brick br = brickList.get(i);
-            if(user.up || user.down){
+            if(up || down){
                 if(br.collisionCheck(2, getX(), getY(), 24, 50)) {
                     if(i == 0){
                         user.Shoot = false;
@@ -64,7 +72,7 @@ public class Missile extends Weapon{
                     }
                     else{
                         int Y;
-                        if(user.up) Y = y-30 ;
+                        if(up) Y = y - 30 ;
                         else Y = y + 50;
                         ExplosionEffect e = new ExplosionEffect(x, Y);
                         effect_list.add(e);
@@ -72,7 +80,7 @@ public class Missile extends Weapon{
                     }
                 }
             }
-            else if(user.right || user.left){
+            else if(right || left){
                 if(br.collisionCheck(2, getX(), getY(), 50, 24)) {
                     if(i == 0){
                         user.Shoot = false;
@@ -81,7 +89,7 @@ public class Missile extends Weapon{
                     }
                     else{
                         int X;
-                        if(user.left) X = x - 50;
+                        if(left) X = x - 50;
                         else X = x + 50;
                         ExplosionEffect e = new ExplosionEffect(X, y-13);
                         effect_list.add(e);
@@ -90,7 +98,7 @@ public class Missile extends Weapon{
                 }
             }
         }
-        if(getY() < 1 || getY() > 580 || getX() < 1 || getX() > 600){
+        if(getY() < 1 || getY() > 580 || getX() < 1 || getX() > 615){
             ExplosionEffect e = new ExplosionEffect(enemy.X + 15, enemy.Y + 15);
             user.Shoot = false;
             user.shootDirection = "";
@@ -117,13 +125,13 @@ public class Missile extends Weapon{
     @Override
     public void move(String face){
         if(user.shootDirection.equals("hit")) return;
-        if (face.equals("right")) {
+        if (face.equals("right")){
             x += 2;
         }
-        else if (face.equals("left")) {
+        else if (face.equals("left")){
             x -= 2;
         }
-        else if (face.equals("up")) {
+        else if (face.equals("up")){
             y -= 2;
         }
         else {
@@ -151,6 +159,7 @@ public class Missile extends Weapon{
     public Weapon releaseNewOne(){
         if (count > 0) {
             --count;
+            System.out.println("hello");
             return  this.create(user);
         }
         else {

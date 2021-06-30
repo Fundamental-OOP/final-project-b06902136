@@ -32,7 +32,7 @@ public class Bullet extends Weapon{
 			user.setUsingWeapon(null);
 			return true;
 		}
-		if(getY() < 1 || getY() > 580 || getX() < 1 || getX() > 600){
+		if(getY() < 1 || getY() > 580 || getX() < 1 || getX() > 640){
 			user.Shoot = false;
 			user.shootDirection = "";
 			user.setUsingWeapon(null);

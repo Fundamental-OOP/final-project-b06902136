@@ -7,17 +7,17 @@ public class Health extends Buff{
     public Health(int x, int y) {
         super();
         HealthImage = new ImageIcon("health.png");
-        super.buffXpos = x;
-        super.buffYpos = y;
+        buffXpos = x;
+        buffYpos = y;
         buffOn = true;
     }
     public void draw(Component component, Graphics graphics){
-        if(super.buffOn)
-            HealthImage.paintIcon(component, graphics, super.buffXpos, super.buffYpos);
+        if(buffOn)
+            HealthImage.paintIcon(component, graphics, buffXpos, buffYpos);
     }
     @Override
     public boolean acquireCheck(Player p){
-        if(new Rectangle(super.buffXpos, super.buffYpos, 50, 50)
+        if(new Rectangle(buffXpos, buffYpos, 50, 50)
                 .intersects(new Rectangle(p.X, p.Y, 50, 50))) {
             p.lives += 1;
             buffOn = false;

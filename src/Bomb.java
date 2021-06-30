@@ -78,12 +78,14 @@ public class Bomb extends Weapon{
         else{
             if(effectCountDown > limit){
                 for (int i = 0; i < 3; ++i) {
+                    if(x > 600 && i == 2) break;
                     for (int j = 0; j < 3; ++j)
                         explosion_effect1.paintIcon(c, g, x - 50 + 50 * i, y - 50 + 50 * j);
                 }
             }
             else{
                 for (int i = 0; i < 3; ++i) {
+                    if(x > 600 && i == 2) break;
                     for (int j = 0; j < 3; ++j)
                         explosion_effect2.paintIcon(c, g, x - 50 + 50 * i, y - 50 + 50 * j);
                 }

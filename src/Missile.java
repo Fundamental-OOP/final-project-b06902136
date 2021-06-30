@@ -159,7 +159,6 @@ public class Missile extends Weapon{
     public Weapon releaseNewOne(){
         if (count > 0) {
             --count;
-            System.out.println("hello");
             return  this.create(user);
         }
         else {

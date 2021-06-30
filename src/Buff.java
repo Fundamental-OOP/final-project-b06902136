@@ -9,8 +9,8 @@ public class Buff {
     public int buffWidth;
     public int buffHeight;
     Buff(){
-        buffWidth = 50;
-        buffHeight = 50;
+        buffWidth = 30;
+        buffHeight = 30;
     }
     public boolean acquireCheck(Player p){
         return false;

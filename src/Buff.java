@@ -30,5 +30,6 @@ public class Buff {
         }
         return;
     }
+    public void draw(Component component, Graphics graphics){}
 }
 

@@ -16,6 +16,9 @@ public class Gameplay extends JPanel implements ActionListener {
 
     public ArrayList<Brick> bList = new ArrayList<>();
     public ArrayList<Weapon> wList = new ArrayList<>();
+    public ArrayList<Buff> buffList = new ArrayList<>();
+
+    public BuffGenerator buff_generator = new BuffGenerator(bList);
 
     private boolean play;
     public Timer timer;
@@ -131,6 +134,26 @@ public class Gameplay extends JPanel implements ActionListener {
                     player2.setUsingWeapon(null);
                     player2.Shoot = false;
                     player2.shootDirection = "";
+                }
+            }
+
+            if(buffList.isEmpty()){
+                //if(((int)Math.random()*100)%2 == 1)
+                    buffList.add(buff_generator.GenerateBuff("Magazine"));
+                //else
+                    buffList.add(buff_generator.GenerateBuff("Health"));
+            }else{
+                for(Buff buff:buffList){
+                    buff.draw(this, graphics);
+                    if(buff.acquireCheck(player1)){
+                        buffList.remove(buff);
+                        buff = null;
+                        break;
+                    }if(buff.acquireCheck(player2)){
+                        buffList.remove(buff);
+                        buff = null;
+                        break;
+                    }
                 }
             }
         }

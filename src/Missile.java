@@ -64,7 +64,7 @@ public class Missile extends Weapon{
                     }
                     else{
                         int Y;
-                        if(user.up) Y = y - 50;
+                        if(user.up) Y = y-30 ;
                         else Y = y + 50;
                         ExplosionEffect e = new ExplosionEffect(x, Y);
                         effect_list.add(e);
@@ -174,9 +174,9 @@ public class Missile extends Weapon{
         }
         public void effect_paint(Component c, Graphics g){
             --countDown;
-            if(countDown < limit)
-                effectIMG1.paintIcon(c, g, X, Y);
-            else effectIMG2.paintIcon(c, g, x, y);
+            if(countDown > limit)
+                effectIMG1.paintIcon(c, g, X-5, Y-5);
+            else effectIMG2.paintIcon(c, g, X-5, Y-5);
         }
     }
 }

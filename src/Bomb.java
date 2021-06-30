@@ -16,9 +16,11 @@ public class Bomb extends Weapon{
     private int x;
     private int y;
     private int effectCountDown;
+    private int limit;
     //private int times;
     Breakable_Bricks bricks;
-    private ImageIcon explosion_effect;
+    private ImageIcon explosion_effect1;
+    private ImageIcon explosion_effect2;
 
     private ImageIcon bombImage;
     private ArrayList<Brick>bricksList;
@@ -29,7 +31,9 @@ public class Bomb extends Weapon{
         this.bricksList = bricksList;
         countDown = 800;
         effectCountDown = 100;
-        explosion_effect = new ImageIcon("explosion_effect.png");
+        limit = 50;
+        explosion_effect1 = new ImageIcon("explosion_effect1.png");
+        explosion_effect2 = new ImageIcon("explosion_effect2.png");
     }
 
     @Override
@@ -72,9 +76,17 @@ public class Bomb extends Weapon{
     public void draw(Component c, Graphics g) {
         if(countDown > 0) bombImage.paintIcon(c, g, this.x, this.y);
         else{
-            for(int i = 0; i < 3; ++i){
-                for(int j = 0; j <3; ++j)
-                    explosion_effect.paintIcon(c, g, x-50+50*i, y-50+50*j);
+            if(effectCountDown > limit){
+                for (int i = 0; i < 3; ++i) {
+                    for (int j = 0; j < 3; ++j)
+                        explosion_effect1.paintIcon(c, g, x - 50 + 50 * i, y - 50 + 50 * j);
+                }
+            }
+            else{
+                for (int i = 0; i < 3; ++i) {
+                    for (int j = 0; j < 3; ++j)
+                        explosion_effect2.paintIcon(c, g, x - 50 + 50 * i, y - 50 + 50 * j);
+                }
             }
         }
     }
